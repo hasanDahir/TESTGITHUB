@@ -3,9 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Table Selection with Hover Effect and Background Video</title>
+    <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-    <h1>h</h1>
+
+    <!-- Background video -->
+    <video id="bg-video" autoplay muted loop>
+        <source src="test.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <!-- Table with names added below images -->
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/9.jpg" alt="Table 1">
+            <span>Table 1</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/8.jpg" alt="Table 2">
+            <span>Table 2</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/1-removebg-preview.png" alt="Table 3">
+            <span>Table 3</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/2.jpg" alt="Table 4">
+            <span>Table 4</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/3.jpg" alt="Table 5">
+            <span>Table 5</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/4.jpg" alt="Table 6">
+            <span>Table 6</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/5.jpg" alt="Table 7">
+            <span>Table 7</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/6.jpg" alt="Table 8">
+            <span>Table 8</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/7.jpg" alt="Table 9">
+            <span>Table 9</span> <!-- Table name -->
+        </div>
+        <div class="table" onclick="selectTable(this)">
+            <img src="table/table.png" alt="Table 10">
+            <span>Table 10</span> <!-- Table name -->
+        </div>
+    </div>
+    
+    <button class="next-btn" onclick="goToNextPage()">Next</button>
+
+    <script>
+        let selectedTable = null;
+
+        function selectTable(tableElement) {
+            // Remove 'selected' class from all tables
+            const allTables = document.querySelectorAll('.table');
+            allTables.forEach(function(table) {
+                table.classList.remove('selected');
+            });
+
+            // Add 'selected' class to the clicked table
+            tableElement.classList.add('selected');
+            selectedTable = tableElement.querySelector('span').innerText; // Get the table name
+        }
+
+        function goToNextPage() {
+            if (selectedTable) {
+                // Navigate to the next page and pass the selected table information
+                window.location.href = "http://127.0.0.1:5502/in.html?table=" + encodeURIComponent(selectedTable);
+            } else {
+                alert('Please select a table before proceeding!');
+            }
+        }
+    </script>
+
 </body>
 </html>
